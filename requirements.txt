@@ -1,0 +1,10 @@
+Django
+python-decouple
+psycopg[binary]
+dj-database-url
+django-allauth[socialaccount]
+django-weasyprint
+django-timezone-field
+
+## Phase 2
+#wagtail

@@ -1,0 +1,17 @@
+<div>
+    <label>{{ field.label }}</label>
+    {% for component_type, components in component_groups.items %}
+        <fieldset class="mt-4">
+            <legend class="font-semibold">{{ component_type.name }}</legend>
+            {% for component in components %}
+                <div class="flex items-center mt-2">
+                    <input type="checkbox" name="{{ field.html_name }}" value="{{ component.id }}"
+                        id="component_{{ component.id }}"
+                        {% if component.id|stringformat:"s" in field.value|stringformat:"s" %}checked{% endif %}
+                        class="checkbox checkbox-primary">
+                    <label for="component_{{ component.id }}" class="ml-2">{{ component.name }}</label>
+                </div>
+            {% endfor %}
+        </fieldset>
+    {% endfor %}
+</div>

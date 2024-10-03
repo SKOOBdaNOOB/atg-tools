@@ -1,0 +1,15 @@
+<div style="margin-left: {{ level|add:"1" }}rem;">
+    <div class="flex items-center mb-2">
+        <input type="hidden" name="task_ids" value="{{ task_node.task.id }}">
+        <label class="mr-4">{{ task_node.task.task.name }}</label>
+        <select name="status_{{ task_node.task.id }}" class="select select-bordered w-32 mr-2">
+            <option value="Incomplete" {% if task_node.task.status == 'Incomplete' %}selected{% endif %}>Incomplete</option>
+            <option value="Complete" {% if task_node.task.status == 'Complete' %}selected{% endif %}>Complete</option>
+            <option value="Failed" {% if task_node.task.status == 'Failed' %}selected{% endif %}>Failed</option>
+        </select>
+        <input type="text" name="notes_{{ task_node.task.id }}" value="{{ task_node.task.notes }}" placeholder="Notes" class="input input-bordered flex-1">
+    </div>
+    {% for subtask_node in task_node.subtasks %}
+        {% include 'dept_qa/task_item.html' with task_node=subtask_node level=level|add:1 %}
+    {% endfor %}
+</div>

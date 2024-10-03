@@ -1,0 +1,25 @@
+services:
+
+  dev_db:
+    image: postgres:16.3-alpine3.20
+    container_name: atg-database
+    restart: unless-stopped
+    shm_size: 128mb # set shared memory limit when using docker-compose (or set shared memory limit when deploy via swarm stack)
+    # networks:
+    #   - pgsql-iso
+    ports:
+      - 5432:5432
+    volumes:
+      - .dev_db/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: django
+      POSTGRES_USER: djuser
+      POSTGRES_PASSWORD: 'Glsgm*DLnb8gXEIR^62L'
+
+
+volumes:
+  data:
+
+# networks:
+#   pgsql-iso:
+#     external: true
